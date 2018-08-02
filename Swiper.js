@@ -562,15 +562,30 @@ class Swiper extends Component {
     ]
   }
 
-  calculateStackCardZoomStyle = (index) => [
-    styles.card,
-    this.cardStyle,
-    {
-      zIndex: index * -1,
-      transform: [{ scale: this.state[`stackScale${index}`] }, { translateY: this.state[`stackPosition${index}`] }]
-    },
-    this.customCardStyle
-  ];
+  calculateStackCardZoomStyle = (index) => {
+    if (this.props.previousCardTranslateX) {
+      return [
+        styles.card,
+        this.cardStyle,
+        {
+          zIndex: index * -1,
+          transform: [{ scale: this.state[`stackScale${index}`] }, { translateX: this.state[`stackPosition${index}`] }]
+        },
+        this.customCardStyle
+      ]
+    } else {
+      return [
+        styles.card,
+        this.cardStyle,
+        {
+          zIndex: index * -1,
+          transform: [{ scale: this.state[`stackScale${index}`] }, { translateY: this.state[`stackPosition${index}`] }]
+        },
+        this.customCardStyle
+      ]
+    }
+
+  }
 
   calculateSwipeBackCardStyle = () => [
     styles.card,
@@ -831,6 +846,7 @@ Swiper.propTypes = {
   overlayOpacityVerticalThreshold: PropTypes.number,
   previousCardInitialPositionX: PropTypes.number,
   previousCardInitialPositionY: PropTypes.number,
+  previousCardTranslateX: PropTypes.bool,
   renderCard: PropTypes.func.isRequired,
   secondCardZoom: PropTypes.number,
   showSecondCard: PropTypes.bool,
@@ -924,6 +940,7 @@ Swiper.defaultProps = {
   overlayOpacityVerticalThreshold: height / 5,
   previousCardInitialPositionX: 0,
   previousCardInitialPositionY: -height,
+  previousCardTranslateX: false,
   secondCardZoom: 0.97,
   showSecondCard: true,
   swipeAnimationDuration: 350,
