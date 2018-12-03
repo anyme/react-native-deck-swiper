@@ -626,8 +626,8 @@ class Swiper extends Component {
         styles.card,
         this.cardStyle,
         {
-          zIndex: position * -1,
-          transform: [{ scale: this.state[`stackScale${position}`] }, { translateX: this.state[`stackPosition${position}`] }]
+          zIndex: index * -1,
+          transform: [{ scale: this.state[`stackScale${index}`] }, { translateX: this.state[`stackPosition${index}`] }]
         },
         this.customCardStyle
       ]
