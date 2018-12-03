@@ -620,14 +620,14 @@ class Swiper extends Component {
     ]
   }
 
-  calculateStackCardZoomStyle = (position) => {
+  calculateStackCardZoomStyle = (index) => {
     if (this.props.previousCardTranslateX) {
       return [
         styles.card,
         this.cardStyle,
         {
-          zIndex: position * -1,
-          transform: [{ scale: this.state[`stackScale${position}`] }, { translateX: this.state[`stackPosition${position}`] }]
+          zIndex: index * -1,
+          transform: [{ scale: this.state[`stackScale${index}`] }, { translateX: this.state[`stackPosition${index}`] }]
         },
         this.customCardStyle
       ]
@@ -636,8 +636,8 @@ class Swiper extends Component {
         styles.card,
         this.cardStyle,
         {
-          zIndex: position * -1,
-          transform: [{ scale: this.state[`stackScale${position}`] }, { translateY: this.state[`stackPosition${position}`] }]
+          zIndex: index * -1,
+          transform: [{ scale: this.state[`stackScale${index}`] }, { translateY: this.state[`stackPosition${index}`] }]
         },
         this.customCardStyle
       ]
