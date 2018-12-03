@@ -620,7 +620,7 @@ class Swiper extends Component {
     ]
   }
 
-  calculateStackCardZoomStyle = (position) => {
+  calculateStackCardZoomStyle = (index) => {
     if (this.props.previousCardTranslateX) {
       return [
         styles.card,
